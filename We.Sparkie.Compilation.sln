@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "We.Sparkie.Compilation.Api", "We.Sparkie.Compilation.Api\We.Sparkie.Compilation.Api.csproj", "{9F540060-BB8D-47F7-A327-3A9B51B0CD5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "We.Sparkie.Compilation.Tests", "We.Sparkie.Compilation.Tests\We.Sparkie.Compilation.Tests.csproj", "{9588C1E0-46A1-417B-8EAD-6EF3D87654C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F540060-BB8D-47F7-A327-3A9B51B0CD5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F540060-BB8D-47F7-A327-3A9B51B0CD5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F540060-BB8D-47F7-A327-3A9B51B0CD5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F540060-BB8D-47F7-A327-3A9B51B0CD5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9588C1E0-46A1-417B-8EAD-6EF3D87654C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9588C1E0-46A1-417B-8EAD-6EF3D87654C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9588C1E0-46A1-417B-8EAD-6EF3D87654C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9588C1E0-46A1-417B-8EAD-6EF3D87654C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D84F2D0F-230F-4F2F-800D-0AE89E836F03}
+	EndGlobalSection
+EndGlobal
