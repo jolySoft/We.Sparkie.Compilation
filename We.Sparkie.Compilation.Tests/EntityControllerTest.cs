@@ -1,40 +1,37 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
-using Mongo2Go;
-using MongoDB.Driver;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using We.Sparkie.Compilation.Api.Controllers;
 using We.Sparkie.Compilation.Api.Repository;
-using We.Sparkie.Compilation.Tests.TestControllers;
-using We.Sparkie.Compilation.Tests.TestEntities;
+using We.Sparkie.Compilation.Api.Entities;
 using Xunit;
 
-namespace We.CrudService.Tests
+namespace We.Sparkie.Compilation.Tests
 {
     public class EntityControllerTest
     {
-        private MongoDbRunner _runner;
-        private Repository<TestEntity> _repository;
-        private TestController _controller;
-        private IMongoCollection<TestEntity> _collection;
-        private MongoClient _client;
-        private MongoDatabaseBase _database;
-        private List<TestEntity> _entities;
+        private Repository<Api.Entities.Compilation> _repository;
+        private CompilationDbContext _dbContext;
+        private List<Api.Entities.Compilation> _entities;
+        private CompilationController _controller;
 
         public EntityControllerTest()
         {
-            _runner = MongoDbRunner.Start();
-        
-            _client = new MongoClient(_runner.ConnectionString);
-            _database = (MongoDatabaseBase)_client.GetDatabase("Integration");
-            _collection = _database.GetCollection<TestEntity>("TestEntity");
+            var builder = new DbContextOptionsBuilder<CompilationDbContext>();
+            builder.UseInMemoryDatabase("CompilationDb");
+            var options = builder.Options;
+
+            _dbContext = new CompilationDbContext(options);
 
 
-            _repository = new Repository<TestEntity>(_database);
-            _controller = new TestController(_repository);
+            _repository = new Repository<Api.Entities.Compilation>(_dbContext);
+            _controller = new CompilationController(_repository);
         }
 
 
@@ -61,44 +58,44 @@ namespace We.CrudService.Tests
         [Fact]
         public async Task CanPostAnEntity()
         {
-            var entity = new TestEntity
+            var entity = new Api.Entities.Compilation
             {
-                Name = "Jolyon Wharton",
-                Age = 15
+                CreatedBy = "Jolyon Wharton",
+                CompilationType = CompilationType.PlayList
             };
 
             await _controller.Post(entity);
 
-            _collection.Find(x => true).First().Should().BeEquivalentTo(entity);
+            _dbContext.Set<Api.Entities.Compilation>().Single(e => e.CreatedBy == "Jolyon Wharton").Should().NotBeNull();
         }
 
         [Fact]
-        public async Task CanPutAnEntity()
+        public void CanPutAnEntity()
         {
             BuildCollection();
             var entity = _entities[1];
-            entity.Name = "Brian Blessed";
-            entity.Age = 21;
+            entity.CreatedBy = "Brian Blessed";
+            entity.CompilationType = CompilationType.PlayList;
 
-            await _controller.Put(entity.Id, entity);
+            _controller.Put(entity.Id, entity);
 
-            _collection.Find(e => e.Id == entity.Id).First().Should().BeEquivalentTo(entity);
+            _dbContext.Set<Api.Entities.Compilation>().Single(e => e.Id == entity.Id).Should().BeEquivalentTo(entity);
         }
 
         [Fact]
         public async Task CanPatchAnEntity()
         {
             BuildCollection();
-            var operations = new List<Operation<TestEntity>>
+            var operations = new List<Operation<Api.Entities.Compilation>>
             {
-                new Operation<TestEntity>("replace", "/Age", null, 999)
+                new Operation<Api.Entities.Compilation>("replace", "/CreatedBy", null, "Palpatine")
             };
-            var patch = new JsonPatchDocument<TestEntity>(operations, new DefaultContractResolver());
+            var patch = new JsonPatchDocument<Api.Entities.Compilation>(operations, new DefaultContractResolver());
             var id = _entities[2].Id;
 
             await _controller.Patch(id, patch);
 
-            _collection.Find(e => e.Id == id).First().Age.Should().Be(999);
+            _dbContext.Set<Api.Entities.Compilation>().Single(e => e.Id == id).CreatedBy.Should().Be("Palpatine");
         }
 
         [Fact]
@@ -109,31 +106,31 @@ namespace We.CrudService.Tests
 
             await _controller.Delete(id);
 
-            _collection.CountDocuments(FilterDefinition<TestEntity>.Empty).Should().Be(2);
+            _dbContext.Set<Api.Entities.Compilation>().Count().Should().Be(2);
         }
 
         private void BuildCollection()
         {
-            _entities = new List<TestEntity>
+            _entities = new List<Api.Entities.Compilation>
             {
-                new TestEntity
+                new Api.Entities.Compilation
                 {
-                    Name = "Jolyon Wharton",
-                    Age = 15
+                    CompilationType = CompilationType.Album,
+                    CreatedBy = "Afsul"
                 },
-                new TestEntity
+                new Api.Entities.Compilation
                 {
-                    Name = "Kieran Iles",
-                    Age = 12
+                    CreatedBy = "Kieran Iles",
+                    CompilationType = CompilationType.Ep
                 },
-                new TestEntity
+                new Api.Entities.Compilation
                 {
-                    Name = "Peter Srank",
-                    Age = 14
+                    CreatedBy = "Peter Srank",
+                    CompilationType = CompilationType.Soundtrack
                 }
             };
 
-            _collection.InsertMany(_entities);
+            _dbContext.Set<Api.Entities.Compilation>().AddRange(_entities);
         }
     }
 }
