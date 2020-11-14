@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using We.Sparkie.Compilation.Api.Repository;
 
 namespace We.Sparkie.Compilation.Api
@@ -24,13 +25,22 @@ namespace We.Sparkie.Compilation.Api
             services.AddDbContext<CompilationDbContext>(cfg => 
                 cfg.UseSqlServer(connectionString, providerOptions=>
                         providerOptions.CommandTimeout(60))
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));;
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = this.GetType().Assembly.FullName, Version = "v1" }); });
 
             services.AddScoped(typeof(Repository<>));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Digital Asset API V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
