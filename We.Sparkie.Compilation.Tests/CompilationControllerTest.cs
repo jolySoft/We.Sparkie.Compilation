@@ -14,14 +14,14 @@ using Xunit;
 
 namespace We.Sparkie.Compilation.Tests
 {
-    public class EntityControllerTest
+    public class CompilationControllerTest
     {
         private Repository<Api.Entities.Compilation> _repository;
         private CompilationDbContext _dbContext;
         private List<Api.Entities.Compilation> _entities;
         private CompilationController _controller;
 
-        public EntityControllerTest()
+        public CompilationControllerTest()
         {
             var builder = new DbContextOptionsBuilder<CompilationDbContext>();
             builder.UseInMemoryDatabase("CompilationDb");
@@ -130,7 +130,10 @@ namespace We.Sparkie.Compilation.Tests
                 }
             };
 
-            _dbContext.Set<Api.Entities.Compilation>().AddRange(_entities);
+            _dbContext.Compilations.RemoveRange(_dbContext.Compilations);
+            _dbContext.SaveChanges();
+            _dbContext.Compilations.AddRange(_entities);
+            _dbContext.SaveChanges();
         }
     }
 }

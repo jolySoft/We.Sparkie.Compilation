@@ -6,7 +6,7 @@ using We.Sparkie.Compilation.Api.Entities;
 
 namespace We.Sparkie.Compilation.Api.Repository
 {
-    public class Repository<TEntity> : IDisposable where TEntity : Entity
+    public class Repository<TEntity> where TEntity : Entity
     {
         private readonly CompilationDbContext _dbContext;
 
@@ -25,19 +25,22 @@ namespace We.Sparkie.Compilation.Api.Repository
             return _dbContext.Set<TEntity>().SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public Task Insert(TEntity entity)
+        public async Task Insert(TEntity entity)
         {
-            return _dbContext.Set<TEntity>().AddAsync(entity);
+            _dbContext.Set<TEntity>().Add(entity);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
             _dbContext.Set<TEntity>().Update(entity);
+            await _dbContext.SaveChangesAsync();
         }
 
         public void Delete(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
+            _dbContext.SaveChanges();
         }
 
         public async Task Delete(Guid id)
@@ -45,31 +48,6 @@ namespace We.Sparkie.Compilation.Api.Repository
             var entity = await Get(id);
             if (entity == null) return;
             Delete(entity);
-        }
-
-        private void ReleaseUnmanagedResources()
-        {
-            _dbContext.SaveChanges();
-        }
-
-        private void Dispose(bool disposing)
-        {
-            ReleaseUnmanagedResources();
-            if (disposing)
-            {
-                _dbContext?.Dispose();
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~Repository()
-        {
-            Dispose(false);
         }
     }
 }
