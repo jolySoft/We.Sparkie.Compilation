@@ -27,6 +27,7 @@ namespace We.Sparkie.Compilation.Api
                         providerOptions.CommandTimeout(60))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
+            services.AddMvc();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = this.GetType().Assembly.FullName, Version = "v1" }); });
 
             services.AddScoped(typeof(Repository<>));
@@ -34,6 +35,7 @@ namespace We.Sparkie.Compilation.Api
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

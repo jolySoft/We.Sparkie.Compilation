@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "We.Sparkie.Compilation.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "We.Sparkie.Compilation.Migrations", "We.Sparkie.Compilation.Migrations\We.Sparkie.Compilation.Migrations.csproj", "{675CEE0D-48D1-47C2-AE36-780C1ED7933B}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9C4204CA-A335-4021-BEB6-7FE9B41DB9BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{675CEE0D-48D1-47C2-AE36-780C1ED7933B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{675CEE0D-48D1-47C2-AE36-780C1ED7933B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{675CEE0D-48D1-47C2-AE36-780C1ED7933B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C4204CA-A335-4021-BEB6-7FE9B41DB9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C4204CA-A335-4021-BEB6-7FE9B41DB9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C4204CA-A335-4021-BEB6-7FE9B41DB9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C4204CA-A335-4021-BEB6-7FE9B41DB9BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
