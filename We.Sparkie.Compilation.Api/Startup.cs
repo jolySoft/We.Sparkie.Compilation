@@ -21,11 +21,13 @@ namespace We.Sparkie.Compilation.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var connectionString = Configuration["COMPILATION_DB_CONNECTION_STRING"];
-            services.AddDbContext<CompilationDbContext>(cfg => 
-                cfg.UseSqlServer(connectionString, providerOptions=>
-                        providerOptions.CommandTimeout(60))
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            // var connectionString = Configuration["COMPILATION_DB_CONNECTION_STRING"];
+            services.AddDbContext<CompilationDbContext>();
+
+            // cfg => 
+            //    cfg.UseSqlServer(connectionString, providerOptions=>
+            //            providerOptions.CommandTimeout(60))
+            //        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
 
             services.AddMvc();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = this.GetType().Assembly.FullName, Version = "v1" }); });
