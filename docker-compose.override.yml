@@ -4,5 +4,6 @@ services:
   we.sparkie.compilation.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - COMPILATION_DB_CONNECTION_STRING=Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Sparkie.Compilation;Data Source=localhost;
     ports:
       - "80"

@@ -23,6 +23,6 @@ namespace We.Sparkie.Compilation.Api.Repository
                 .UseSqlServer(connectionString, opt =>
                             opt.MigrationsAssembly("We.Sparkie.Compilation.Api.Migrations"))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
         }
     }
-}
