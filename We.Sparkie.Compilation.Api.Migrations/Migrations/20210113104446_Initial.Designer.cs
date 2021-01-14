@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using We.Sparkie.Compilation.Api.Repository;
 
 namespace We.Sparkie.Compilation.Api.Migrations.Migrations
 {
     [DbContext(typeof(CompilationDbContext))]
-    partial class CompilationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210113104446_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

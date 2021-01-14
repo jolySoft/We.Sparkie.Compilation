@@ -24,7 +24,7 @@ namespace We.Sparkie.Compilation.Api
             var connectionString = Configuration["COMPILATION_DB_CONNECTION_STRING"];
             services.AddDbContext<CompilationDbContext>(cfg =>
                 cfg.UseSqlServer(connectionString, providerOptions =>
-                        providerOptions.CommandTimeout(60))
+                        providerOptions.MigrationsAssembly("We.Sparkie.Compilation.Api.Migrations"))
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             services.AddMvc();
