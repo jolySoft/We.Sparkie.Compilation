@@ -6,6 +6,6 @@ namespace We.Sparkie.Compilation.Api.Entities
     {
         public Guid DigitalAssetId { get; set;  }
         public Artist Artist { get; set; }
-
+        public string Name { get; set; }
     }
 }

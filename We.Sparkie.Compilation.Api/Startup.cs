@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +32,11 @@ namespace We.Sparkie.Compilation.Api
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = this.GetType().Assembly.FullName, Version = "v1" }); });
 
             services.AddScoped(typeof(Repository<>));
+
+            OnServiceCollection?.Invoke(services);
         }
+
+        public static Action<IServiceCollection> OnServiceCollection { get; set; }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
