@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "We.Sparkie.Catalogue.Api", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "We.Sparkie.Catalogue.Tests", "We.Sparkie.Catalogue.Tests\We.Sparkie.Catalogue.Tests.csproj", "{C9C7386B-939B-418B-B8AA-575F5BB4FDC8}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "We.Sparkie.Catalogue.Data", "We.Sparkie.Catalogue.Data\We.Sparkie.Catalogue.Data.sqlproj", "{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{C9C7386B-939B-418B-B8AA-575F5BB4FDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C7386B-939B-418B-B8AA-575F5BB4FDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C7386B-939B-418B-B8AA-575F5BB4FDC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9D09EE-BF6C-4FF3-8736-11D40B1D68F6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
