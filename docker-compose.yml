@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}wesparkiecompilationapi
     build:
       context: .
-      dockerfile: We.Sparkie.Compilation.Api/Dockerfile
+      dockerfile: We.Sparkie.Catalogue.Api/Dockerfile

@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace We.Sparkie.Compilation.Api.Repository
 {
-    public class CompilationDbContext : DbContext
+    public class CatalogueDbContext : DbContext
     {
         public DbSet<Entities.Compilation> Compilations { get; set;  }
 
-        public CompilationDbContext(DbContextOptions options) : base(options)
+        public CatalogueDbContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -15,13 +15,13 @@ namespace We.Sparkie.Compilation.Api.Repository
         {
             if (optionsBuilder.IsConfigured) return;
 
-            var connectionString = Environment.GetEnvironmentVariable("Sparkie.Compilation.ConnectionString");
+            var connectionString = Environment.GetEnvironmentVariable("Sparkie.Catalogue.ConnectionString");
             if(string.IsNullOrEmpty(connectionString))
                 throw new NullReferenceException("Sql server connection string required, please add it to you environment variables");
     
             optionsBuilder
                 .UseSqlServer(connectionString, opt =>
-                            opt.MigrationsAssembly("We.Sparkie.Compilation.Api.Migrations"))
+                            opt.MigrationsAssembly("We.Sparkie.Catalogue.Api.Migrations"))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             }
         }

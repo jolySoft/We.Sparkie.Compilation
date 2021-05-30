@@ -8,9 +8,9 @@ namespace We.Sparkie.Compilation.Api.Repository
 {
     public class Repository<TEntity> where TEntity : Entity
     {
-        private readonly CompilationDbContext _dbContext;
+        private readonly CatalogueDbContext _dbContext;
 
-        public Repository(CompilationDbContext dbContext)
+        public Repository(CatalogueDbContext dbContext)
         {
             _dbContext = dbContext;
         }

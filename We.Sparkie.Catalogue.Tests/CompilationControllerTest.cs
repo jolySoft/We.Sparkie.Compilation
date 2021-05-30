@@ -17,17 +17,17 @@ namespace We.Sparkie.Compilation.Tests
     public class CompilationControllerTest
     {
         private Repository<Api.Entities.Compilation> _repository;
-        private CompilationDbContext _dbContext;
+        private CatalogueDbContext _dbContext;
         private List<Api.Entities.Compilation> _entities;
         private CompilationController _controller;
 
         public CompilationControllerTest()
         {
-            var builder = new DbContextOptionsBuilder<CompilationDbContext>();
+            var builder = new DbContextOptionsBuilder<CatalogueDbContext>();
             builder.UseInMemoryDatabase("CompilationDb");
             var options = builder.Options;
 
-            _dbContext = new CompilationDbContext(options);
+            _dbContext = new CatalogueDbContext(options);
 
 
             _repository = new Repository<Api.Entities.Compilation>(_dbContext);

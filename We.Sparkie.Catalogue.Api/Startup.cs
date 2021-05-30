@@ -22,11 +22,9 @@ namespace We.Sparkie.Compilation.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var connectionString = Configuration["COMPILATION_DB_CONNECTION_STRING"];
-            services.AddDbContext<CompilationDbContext>(cfg =>
-                cfg.UseSqlServer(connectionString, providerOptions =>
-                        providerOptions.MigrationsAssembly("We.Sparkie.Compilation.Api.Migrations"))
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            var connectionString = Configuration["CATALOGUE_DB_CONNECTION_STRING"];
+            services.AddDbContext<CatalogueDbContext>(cfg =>
+                cfg.UseSqlServer(connectionString));
 
             services.AddMvc();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = this.GetType().Assembly.FullName, Version = "v1" }); });

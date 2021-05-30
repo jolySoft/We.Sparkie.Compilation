@@ -22,18 +22,18 @@ namespace We.Sparkie.Compilation.Tests
     public class CompilationTests
     {
         private TestServer _testServer;
-        public CompilationDbContextStub _dbStub;
+        public CatalogueDbContextStub _dbStub;
         private HttpClient _client; 
 
         public CompilationTests()
         {
-            var dbBuilder = new DbContextOptionsBuilder<CompilationDbContext>();
+            var dbBuilder = new DbContextOptionsBuilder<CatalogueDbContext>();
             dbBuilder.UseInMemoryDatabase("CatalogueDb");
             var option = dbBuilder.Options;
-            _dbStub = new CompilationDbContextStub(option);
+            _dbStub = new CatalogueDbContextStub(option);
             Startup.OnServiceCollection = services =>
             {
-                services.AddSingleton<CompilationDbContext>((_) => _dbStub);
+                services.AddSingleton<CatalogueDbContext>((_) => _dbStub);
             };
 
             _testServer = new TestServer(new WebHostBuilder().UseStartup<Startup>());
@@ -81,9 +81,9 @@ namespace We.Sparkie.Compilation.Tests
         }
     }
 
-    public class CompilationDbContextStub : CompilationDbContext
+    public class CatalogueDbContextStub : CatalogueDbContext
     {
-        public CompilationDbContextStub(DbContextOptions options) : base(options)
+        public CatalogueDbContextStub(DbContextOptions options) : base(options)
         {
         }
     }
