@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{3e9d09ee-bf6c-4ff3-8736-11d40b1d68f6}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -61,6 +61,9 @@
   <ItemGroup>
     <Build Include="Tables\Artist.sql" />
     <Build Include="Tables\Track.sql" />
-    <Build Include="Tables\Compilation.sql" />
+    <Build Include="Tables\Compilations.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="We.Sparkie.Catalogue.Data.publish.xml" />
   </ItemGroup>
 </Project>

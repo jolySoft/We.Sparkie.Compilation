@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Compilation]
+﻿CREATE TABLE [dbo].[Compilations]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
 	[CompilationType] INT NOT NULL,
