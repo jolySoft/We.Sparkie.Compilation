@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using We.Sparkie.Compilation.Api.Repository;
+using We.Sparkie.Catalogue.Api.Repository;
 
-namespace We.Sparkie.Compilation.Api.Controllers
+namespace We.Sparkie.Catalogue.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

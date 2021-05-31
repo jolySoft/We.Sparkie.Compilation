@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace We.Sparkie.Compilation.Api.Entities
+namespace We.Sparkie.Catalogue.Api.Entities
 {
     public class Track : Entity
     {

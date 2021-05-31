@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace We.Sparkie.Compilation.Api.Entities
+namespace We.Sparkie.Catalogue.Api.Entities
 {
     public class Compilation : Entity
     {

@@ -1,4 +1,4 @@
-﻿namespace We.Sparkie.Compilation.Api.Entities
+﻿namespace We.Sparkie.Catalogue.Api.Entities
 {
     public enum CompilationType
     {

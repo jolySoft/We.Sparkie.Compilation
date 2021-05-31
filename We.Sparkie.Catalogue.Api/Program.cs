@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace We.Sparkie.Compilation.Api
+namespace We.Sparkie.Catalogue.Api
 {
     public class Program
     {

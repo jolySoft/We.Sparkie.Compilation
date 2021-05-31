@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using We.Sparkie.Compilation.Api.Repository;
+using We.Sparkie.Catalogue.Api.Repository;
 
-namespace We.Sparkie.Compilation.Api
+namespace We.Sparkie.Catalogue.Api
 {
     public class Startup
     {
@@ -27,7 +26,8 @@ namespace We.Sparkie.Compilation.Api
                 cfg.UseSqlServer(connectionString));
 
             services.AddMvc();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = this.GetType().Assembly.FullName, Version = "v1" }); });
+            services.AddControllers().AddNewtonsoftJson();
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalogue Service", Version = "v1" }); });
 
             services.AddScoped(typeof(Repository<>));
 

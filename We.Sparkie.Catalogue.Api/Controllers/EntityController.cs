@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using We.Sparkie.Compilation.Api.Entities;
-using We.Sparkie.Compilation.Api.Repository;
+using We.Sparkie.Catalogue.Api.Entities;
+using We.Sparkie.Catalogue.Api.Repository;
 
-namespace We.Sparkie.Compilation.Api.Controllers
+namespace We.Sparkie.Catalogue.Api.Controllers
 {
     [ApiController]
     public abstract class EntityController<TEntity> : Controller where TEntity: Entity
@@ -39,19 +39,19 @@ namespace We.Sparkie.Compilation.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody] TEntity entity)
+        public async Task<IActionResult> Put(Guid id, [FromBody] TEntity entity)
         {
             entity.Id = id;
-            _repository.Update(entity);
+            await _repository.Update(entity);
             return Ok();
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(Guid id, JsonPatchDocument<TEntity> patch)
+        public async Task<IActionResult> Patch(Guid id, [FromBody]JsonPatchDocument<TEntity> patch)
         {
             var entity = await _repository.Get(id);
             patch.ApplyTo(entity);
-            _repository.Update(entity);
+            await _repository.Update(entity);
             return Ok();
         }
 

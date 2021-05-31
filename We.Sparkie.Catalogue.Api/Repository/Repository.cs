@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using We.Sparkie.Compilation.Api.Entities;
+using We.Sparkie.Catalogue.Api.Entities;
 
-namespace We.Sparkie.Compilation.Api.Repository
+namespace We.Sparkie.Catalogue.Api.Repository
 {
     public class Repository<TEntity> where TEntity : Entity
     {

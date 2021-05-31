@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace We.Sparkie.Compilation.Api.Repository
+namespace We.Sparkie.Catalogue.Api.Repository
 {
     public class CatalogueDbContext : DbContext
     {
